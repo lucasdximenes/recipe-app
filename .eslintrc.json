@@ -14,12 +14,28 @@
             "ignoreStrings": true
           }
         ],
-        "max-lines": [ "off" ],
+        "max-lines": ["off"],
         "no-magic-numbers": ["off"]
       }
     }
   ],
   "rules": {
-    "react/jsx-no-constructed-context-values": 0
+    "react/jsx-no-constructed-context-values": 0,
+    "jsx-a11y/label-has-associated-control": [
+      "off",
+      {
+        "required": {
+          "some": ["nesting", "id"]
+        }
+      }
+    ],
+    "jsx-a11y/label-has-for": [
+      "off",
+      {
+        "required": {
+          "some": ["nesting", "id"]
+        }
+      }
+    ]
   }
 }
