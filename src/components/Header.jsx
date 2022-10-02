@@ -11,7 +11,7 @@ function Header({ title, search, profile }) {
   const { push } = useHistory();
 
   return (
-    <div className="bg-white border-bottom shadow-sm container px-md-4 p-3">
+    <div className="bg-white border-bottom shadow-sm container px-md-4 p-md-3">
       <div className="d-flex flex-row align-items-center">
         <h5 className="my-0 me-auto fw-normal" data-testid="page-title">
           {title}

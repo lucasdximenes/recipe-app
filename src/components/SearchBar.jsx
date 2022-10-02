@@ -1,23 +1,28 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { CookMasterContext } from '../context/CookMasterContext';
 
 const FIRST_LETTER = 'first-letter';
 
-export default function SearchBar() {
+function SearchBar() {
   const {
     location: { pathname },
     push,
   } = useHistory();
+  // prettier-ignore
   const {
-    filter,
     setFilter,
-    searchParam,
     setSearchParam,
     setType,
-    fetchRecipes,
     recipes,
+    category,
+    setCategory,
+    setResetCategoryFilter,
+    resetCategoryFilter,
   } = useContext(CookMasterContext);
+
+  const [search, setSearch] = useState('');
+  const [searchType, setSearchType] = useState('name');
 
   useEffect(() => {
     const type = pathname.includes('meals') ? 'meals' : 'drinks';
@@ -25,18 +30,25 @@ export default function SearchBar() {
   }, [pathname, setType]);
 
   useEffect(() => {
-    if (recipes?.length === 1) {
+    if (recipes?.length === 1 && category === 'All') {
       const { idMeal, idDrink } = recipes[0];
       const id = idMeal || idDrink;
       push(`/${pathname.split('/')[1]}/${id}`);
     }
-  }, [recipes, push, pathname]);
+  }, [recipes, push, pathname, category]);
 
   useEffect(() => {
-    if (filter === FIRST_LETTER && searchParam.length > 1) {
+    if (searchType === FIRST_LETTER && search.length > 1) {
       global.alert('Your search must have only 1 (one) character');
     }
-  }, [filter, searchParam]);
+  }, [search, searchType]);
+
+  const setFiltersAndSearch = () => {
+    setCategory('All');
+    setResetCategoryFilter(!resetCategoryFilter);
+    setFilter(searchType);
+    setSearchParam(search);
+  };
 
   return (
     <div className="my-3 my-md-0 mr-md-auto me-md-3">
@@ -48,8 +60,8 @@ export default function SearchBar() {
           value="ingredient"
           id="ingredient"
           className="form-check-input mx-2"
-          onChange={ ({ target }) => setFilter(target.value) }
-          checked={ filter === 'ingredient' }
+          onChange={ ({ target }) => setSearchType(target.value) }
+          checked={ searchType === 'ingredient' }
         />
         <label htmlFor="ingredient" className="form-check-label">
           Ingredient
@@ -62,8 +74,8 @@ export default function SearchBar() {
           value="name"
           id="name"
           className="form-check-input mx-2"
-          onChange={ ({ target }) => setFilter(target.value) }
-          checked={ filter === 'name' }
+          onChange={ ({ target }) => setSearchType(target.value) }
+          checked={ searchType === 'name' }
         />
         <label htmlFor="name" className="form-check-label">
           Name
@@ -77,10 +89,10 @@ export default function SearchBar() {
           id="first-letter"
           className="form-check-input mx-2"
           onChange={ ({ target }) => {
-            setFilter(target.value);
-            setSearchParam('');
+            setSearchType(target.value);
+            setSearch('');
           } }
-          checked={ filter === FIRST_LETTER }
+          checked={ searchType === FIRST_LETTER }
         />
         <label htmlFor="first-letter" className="form-check-label">
           First letter
@@ -93,18 +105,18 @@ export default function SearchBar() {
           data-testid="search-input"
           placeholder="Buscar Receita"
           className="form-control me-2"
-          onChange={ ({ target }) => setSearchParam(target.value) }
-          value={ searchParam }
+          onChange={ ({ target }) => setSearch(target.value) }
+          value={ search }
         />
         <button
           type="button"
           data-testid="exec-search-btn"
           className="btn btn-primary"
           onClick={ () => {
-            if (filter === FIRST_LETTER && searchParam.length > 1) {
+            if (searchType === FIRST_LETTER && search.length > 1) {
               global.alert('Your search must have only 1 (one) character');
             } else {
-              fetchRecipes();
+              setFiltersAndSearch();
             }
           } }
         >
@@ -114,3 +126,5 @@ export default function SearchBar() {
     </div>
   );
 }
+
+export default SearchBar;

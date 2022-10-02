@@ -16,11 +16,21 @@ const selectedFilter = (filter) => {
   }
 };
 
-const fetchSearchAPI = async (type, filter, searchParam) => {
-  const URL = `${baseEndpoint(type)}${selectedFilter(filter)}${searchParam}`;
-  const response = await fetch(URL);
-  const data = await response.json();
-  return data;
+const baseCategoriesEndpoint = (type) => {
+  const mealsEndpoint = 'https://www.themealdb.com/api/json/v1/1/list.php?c=list';
+  const drinksEndpoint = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
+  return type === 'meals' ? mealsEndpoint : drinksEndpoint;
 };
 
-export default fetchSearchAPI;
+const recipeByCategoryEndpoint = (type) => {
+  const mealsEndpoint = 'https://www.themealdb.com/api/json/v1/1/filter.php?c=';
+  const drinksEndpoint = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=';
+  return type === 'meals' ? mealsEndpoint : drinksEndpoint;
+};
+
+export {
+  baseEndpoint,
+  selectedFilter,
+  baseCategoriesEndpoint,
+  recipeByCategoryEndpoint,
+};
