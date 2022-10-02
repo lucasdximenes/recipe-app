@@ -12,16 +12,13 @@ function Header({ title, search, profile }) {
 
   return (
     <div className="bg-white border-bottom shadow-sm container px-md-4 p-3">
-      <div className="d-flex flex-column flex-md-row align-items-center">
-        <h5
-          className="my-0 me-md-auto fw-normal order-1"
-          data-testid="page-title"
-        >
+      <div className="d-flex flex-row align-items-center">
+        <h5 className="my-0 me-auto fw-normal" data-testid="page-title">
           {title}
         </h5>
 
         {search && (
-          <div className="mr-md-3 me-md-2 order-3 order-md-3">
+          <div className="mr-md-3 me-md-2 ">
             <img
               src={ searchIcon }
               alt="search"
@@ -32,9 +29,8 @@ function Header({ title, search, profile }) {
             />
           </div>
         )}
-
         {profile && (
-          <div className="my-3 my-md-0 mr-md-auto order-2 order-md-4">
+          <div className="my-3 my-md-0 mr-md-auto">
             <img
               src={ profileIcon }
               alt="profile icon"
