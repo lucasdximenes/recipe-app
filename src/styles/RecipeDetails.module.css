@@ -1,0 +1,22 @@
+.alertBoxAnimation {
+  animation: alert-box 3.1s ease-in-out;
+}
+
+@keyframes alert-box {
+
+  0% {
+    transform: translateY(-100%);
+  }
+
+  33% {
+    transform: translateY(0);
+  }
+
+  66% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-100%);
+  }
+}

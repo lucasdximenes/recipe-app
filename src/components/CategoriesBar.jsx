@@ -17,7 +17,11 @@ export default function CategoriesBar() {
       <div className="d-flex flex-row align-items-center overflow-auto">
         <button
           type="button"
-          className="btn btn-outline-secondary mx-2"
+          className={
+            category === 'All'
+              ? 'btn btn-outline-secondary mx-2 active'
+              : 'btn btn-outline-secondary mx-2'
+          }
           data-testid="All-category-filter"
           onClick={ () => {
             setCategory('All');
@@ -32,7 +36,11 @@ export default function CategoriesBar() {
             type="button"
             key={ index }
             data-testid={ `${cat.strCategory}-category-filter` }
-            className="btn btn-outline-secondary mx-2"
+            className={
+              category === cat.strCategory
+                ? 'btn btn-outline-secondary mx-2 active'
+                : 'btn btn-outline-secondary mx-2'
+            }
             onClick={ () => {
               if (category === cat.strCategory) {
                 setCategory('All');

@@ -10,4 +10,52 @@ const saveDrinksToken = (token = 1) => {
   localStorage.setItem('drinksToken', JSON.stringify(token));
 };
 
-export { saveUser, saveMealsToken, saveDrinksToken };
+const getDoneRecipes = () => {
+  const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
+  return doneRecipes || [];
+};
+
+const getInProgressRecipes = () => {
+  const inProgressRecipes = JSON.parse(
+    localStorage.getItem('inProgressRecipes'),
+  );
+  return inProgressRecipes || { drinks: {}, meals: {} };
+};
+
+const getFavoriteRecipes = () => {
+  const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+  return favoriteRecipes || [];
+};
+
+const saveFavoriteRecipe = (recipe) => {
+  const favoriteRecipes = getFavoriteRecipes();
+  localStorage.setItem(
+    'favoriteRecipes',
+    JSON.stringify([...favoriteRecipes, recipe]),
+  );
+};
+
+const isFavoriteRecipe = (recipeId) => {
+  const favoriteRecipes = getFavoriteRecipes();
+  return favoriteRecipes.some((recipe) => recipe.id === recipeId);
+};
+
+const removeFavoriteRecipe = (recipeId) => {
+  const favoriteRecipes = getFavoriteRecipes();
+  const newFavoriteRecipes = favoriteRecipes.filter(
+    (favoriteRecipe) => favoriteRecipe.id !== recipeId,
+  );
+  localStorage.setItem('favoriteRecipes', JSON.stringify(newFavoriteRecipes));
+};
+
+export {
+  saveUser,
+  saveMealsToken,
+  saveDrinksToken,
+  getDoneRecipes,
+  getInProgressRecipes,
+  getFavoriteRecipes,
+  saveFavoriteRecipe,
+  removeFavoriteRecipe,
+  isFavoriteRecipe,
+};
