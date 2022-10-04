@@ -15,11 +15,31 @@ const getDoneRecipes = () => {
   return doneRecipes || [];
 };
 
+const saveDoneRecipe = (recipe) => {
+  const doneRecipes = getDoneRecipes();
+  localStorage.setItem('doneRecipes', JSON.stringify([...doneRecipes, recipe]));
+};
+
 const getInProgressRecipes = () => {
   const inProgressRecipes = JSON.parse(
     localStorage.getItem('inProgressRecipes'),
   );
   return inProgressRecipes || { drinks: {}, meals: {} };
+};
+
+const saveProgressRecipe = (recipeId, type, recipe) => {
+  const inProgressRecipes = getInProgressRecipes();
+  const newInProgressRecipes = {
+    ...inProgressRecipes,
+    [type]: {
+      ...inProgressRecipes[type],
+      [recipeId]: recipe,
+    },
+  };
+  localStorage.setItem(
+    'inProgressRecipes',
+    JSON.stringify(newInProgressRecipes),
+  );
 };
 
 const getFavoriteRecipes = () => {
@@ -58,4 +78,6 @@ export {
   saveFavoriteRecipe,
   removeFavoriteRecipe,
   isFavoriteRecipe,
+  saveProgressRecipe,
+  saveDoneRecipe,
 };

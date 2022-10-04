@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 /* eslint-disable react/jsx-max-depth */
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -215,15 +216,28 @@ function DrinkDetails({ recipe }) {
           ))}
       </div>
 
-      {!isDone && (
+      {!isDone ? (
         <div className="container shadow p-3 bg-white rounded sticky-bottom">
           <button
             type="button"
             className="btn btn-primary w-100 fw-bold"
             data-testid="start-recipe-btn"
-            onClick={ () => push(`/meals/${recipe.idDrink}/in-progress`) }
+            onClick={ () => push({
+              pathname: `/drinks/${recipe.idDrink}/in-progress`,
+              state: { recipe },
+            }) }
           >
             {inProgress ? 'Continue Recipe' : 'Start Recipe'}
+          </button>
+        </div>
+      ) : (
+        <div className="container shadow p-3 bg-white rounded sticky-bottom">
+          <button
+            type="button"
+            className="btn btn-primary w-100 fw-bold"
+            onClick={ () => push('/done-recipes') }
+          >
+            Finished Recipe
           </button>
         </div>
       )}
