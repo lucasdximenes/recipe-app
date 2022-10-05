@@ -36,7 +36,7 @@ function Login() {
   return (
     <div className="container">
       <div className="d-flex flex-column align-items-center justify-content-center mt-3">
-        <h1 className="text-center">CookMaster</h1>
+        <h1 className="text-center">Recipes app</h1>
         <img src={ rockGlass } alt="logo" className="img-fluid" />
       </div>
       <form className="w-50 mx-auto">
