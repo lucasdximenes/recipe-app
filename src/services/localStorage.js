@@ -20,6 +20,14 @@ const saveDoneRecipe = (recipe) => {
   localStorage.setItem('doneRecipes', JSON.stringify([...doneRecipes, recipe]));
 };
 
+const removeDoneRecipe = (recipeId) => {
+  const doneRecipes = getDoneRecipes();
+  const newDoneRecipes = doneRecipes.filter(
+    (doneRecipe) => doneRecipe.id !== recipeId,
+  );
+  localStorage.setItem('doneRecipes', JSON.stringify(newDoneRecipes));
+};
+
 const getInProgressRecipes = () => {
   const inProgressRecipes = JSON.parse(
     localStorage.getItem('inProgressRecipes'),
@@ -34,6 +42,21 @@ const saveProgressRecipe = (recipeId, type, recipe) => {
     [type]: {
       ...inProgressRecipes[type],
       [recipeId]: recipe,
+    },
+  };
+  localStorage.setItem(
+    'inProgressRecipes',
+    JSON.stringify(newInProgressRecipes),
+  );
+};
+
+const removeProgressRecipe = (recipeId, type) => {
+  const inProgressRecipes = getInProgressRecipes();
+  const newInProgressRecipes = {
+    ...inProgressRecipes,
+    [type]: {
+      ...inProgressRecipes[type],
+      [recipeId]: undefined,
     },
   };
   localStorage.setItem(
@@ -80,4 +103,6 @@ export {
   isFavoriteRecipe,
   saveProgressRecipe,
   saveDoneRecipe,
+  removeDoneRecipe,
+  removeProgressRecipe,
 };

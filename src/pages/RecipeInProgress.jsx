@@ -78,7 +78,8 @@ export default function RecipeInProgress() {
 
   const handleShare = () => {
     const url = window.location.href;
-    copy(url);
+    const cuttedUrl = url.split('/in-progress')[0];
+    copy(cuttedUrl);
     setCopied(true);
   };
 
@@ -104,7 +105,7 @@ export default function RecipeInProgress() {
   };
 
   const handleDone = () => {
-    const type = pathname.includes('meals') ? 'meals' : 'drinks';
+    const type = pathname.includes('meals') ? 'meal' : 'drink';
     const recipeToDone = {
       id: recipe.idMeal || recipe.idDrink,
       type,
@@ -189,7 +190,9 @@ export default function RecipeInProgress() {
                   <li key={ key } className="list-group-item">
                     <label
                       htmlFor={ key }
-                      data-testid={ `${extractInteger(key)}-ingredient-step` }
+                      data-testid={ `${
+                        Number(extractInteger(key)) - 1
+                      }-ingredient-step` }
                       className="form-check-label"
                     >
                       <input

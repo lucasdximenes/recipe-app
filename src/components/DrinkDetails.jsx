@@ -9,6 +9,8 @@ import {
   isFavoriteRecipe,
   saveFavoriteRecipe,
   removeFavoriteRecipe,
+  removeDoneRecipe,
+  removeProgressRecipe,
 } from '../services/localStorage';
 import styles from '../styles/RecipeDetails.module.css';
 import shareIcon from '../images/shareIcon.svg';
@@ -84,6 +86,12 @@ function DrinkDetails({ recipe }) {
       saveFavoriteRecipe(recipeToFav);
       setIsFavorite(true);
     }
+  };
+
+  const restartRecipe = () => {
+    removeDoneRecipe(recipe.idDrink);
+    removeProgressRecipe(recipe.idDrink, 'drinks');
+    push(`/drinks/${recipe.idDrink}/in-progress`);
   };
 
   return (
@@ -231,13 +239,21 @@ function DrinkDetails({ recipe }) {
           </button>
         </div>
       ) : (
-        <div className="container shadow p-3 bg-white rounded sticky-bottom">
+        <div className="container shadow p-3 bg-white rounded sticky-bottom gap-3 d-flex">
           <button
             type="button"
-            className="btn btn-primary w-100 fw-bold"
+            className="btn btn-primary w-50 fw-bold"
             onClick={ () => push('/done-recipes') }
           >
             Finished Recipe
+          </button>
+
+          <button
+            type="button"
+            className="btn btn-primary w-50 fw-bold"
+            onClick={ () => restartRecipe() }
+          >
+            Restart Recipe
           </button>
         </div>
       )}
