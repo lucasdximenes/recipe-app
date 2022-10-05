@@ -14,11 +14,13 @@ It is a Recipe app that allows users to view and make recipes, bookmark, and sea
 
 ## Demo
 
-- [Live Demo]()
+- [Live Demo](https://recipe-app-lake-delta.vercel.app/)
 
 ---
 
 ## Preview
+
+https://user-images.githubusercontent.com/71415845/194116596-e701c90e-ec8f-44cb-82cd-149f70b165fd.mp4
 
 ---
 
