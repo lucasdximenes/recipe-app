@@ -193,7 +193,11 @@ export default function RecipeInProgress() {
                       data-testid={ `${
                         Number(extractInteger(key)) - 1
                       }-ingredient-step` }
-                      className="form-check-label"
+                      className={
+                        ingredients.includes(key)
+                          ? 'form-check-label text-decoration-line-through'
+                          : 'form-check-label'
+                      }
                     >
                       <input
                         type="checkbox"

@@ -5,6 +5,7 @@ import {
   saveMealsToken,
   saveDrinksToken,
 } from '../services/localStorage';
+import rockGlass from '../images/rockGlass.svg';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -34,7 +35,10 @@ function Login() {
 
   return (
     <div className="container">
-      <h1 className="fs-1 fw-bold text-center">Login</h1>
+      <div className="d-flex flex-column align-items-center justify-content-center mt-3">
+        <h1 className="text-center">CookMaster</h1>
+        <img src={ rockGlass } alt="logo" className="img-fluid" />
+      </div>
       <form className="w-50 mx-auto">
         <div className="mb-3">
           <label htmlFor="email" className="form-label">
