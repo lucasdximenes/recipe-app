@@ -2,6 +2,10 @@
 
 ---
 
+- [Lucas Ximenes](https://www.linkedin.com/in/lucasdximenes)
+
+---
+
 ## Descrição
 
 É um aplicativo de receitas que permite aos usuários visualizar e fazer receitas, marcar e pesquisar entre bebidas e alimentos.
@@ -73,11 +77,5 @@ http://localhost:3000/
 - CSS
 - HTML
 - JavaScript
-
----
-
-## Autor
-
-- [Lucas Ximenes](https://www.linkedin.com/in/lucasdximenes)
 
 ---
