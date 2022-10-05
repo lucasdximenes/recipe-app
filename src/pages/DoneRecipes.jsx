@@ -75,59 +75,6 @@ export default function DoneRecipes() {
           </button>
         </div>
 
-        {/* {doneRecipes.map((recipe, index) => (
-          <div key={ recipe.id }>
-            <img
-              src={ recipe.image }
-              alt={ recipe.name }
-              data-testid={ `${index}-horizontal-image` }
-            />
-
-            <h3 data-testid={ `${index}-horizontal-name` }>{recipe.name}</h3>
-
-            <h4 data-testid={ `${index}-horizontal-top-text` }>
-              {recipe.type === 'meal'
-                ? `${recipe.nationality} - ${recipe.category}`
-                : recipe.alcoholicOrNot}
-            </h4>
-
-            <h4 data-testid={ `${index}-horizontal-done-date` }>
-              {recipe.doneDate}
-            </h4>
-
-            {recipe.tags.map((tag, indexTag, arr) => (
-              <span key={ tag } data-testid={ `${index}-${tag}-horizontal-tag` }>
-                {tag}
-                {indexTag < arr.length - 1 && ', '}
-              </span>
-            ))}
-
-            <button
-              type="button"
-              onClick={ () => {
-                const type = recipe.type === 'meal' ? 'meals' : 'drinks';
-                push(`/${type}/${recipe.id}`);
-              } }
-            >
-              Details
-            </button>
-
-            <button
-              type="button"
-              data-testid={ `${index}-horizontal-share-btn` }
-              onClick={ () => {
-                const url = window.location.href;
-                const cuttedUrl = url.split('/done-recipes')[0];
-                const type = recipe.type === 'meal' ? 'meals' : 'drinks';
-                copy(`${cuttedUrl}/${type}/${recipe.id}`);
-                setCopied(true);
-              } }
-            >
-              <img src={ shareIcon } alt="share" />
-            </button>
-          </div>
-        ))} */}
-
         {doneRecipes.map((recipe, index) => (
           <div key={ recipe.id } className="card mb-3 shadow">
             <div className="row g-0">
