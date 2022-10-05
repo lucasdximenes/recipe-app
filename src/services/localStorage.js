@@ -1,3 +1,8 @@
+const getUser = () => {
+  const user = JSON.parse(localStorage.getItem('user'));
+  return user || {};
+};
+
 const saveUser = (user) => {
   localStorage.setItem('user', JSON.stringify(user));
 };
@@ -91,7 +96,12 @@ const removeFavoriteRecipe = (recipeId) => {
   localStorage.setItem('favoriteRecipes', JSON.stringify(newFavoriteRecipes));
 };
 
+const clearLocalStorage = () => {
+  localStorage.clear();
+};
+
 export {
+  getUser,
   saveUser,
   saveMealsToken,
   saveDrinksToken,
@@ -105,4 +115,5 @@ export {
   saveDoneRecipe,
   removeDoneRecipe,
   removeProgressRecipe,
+  clearLocalStorage,
 };
